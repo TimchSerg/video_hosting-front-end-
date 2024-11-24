@@ -36,3 +36,20 @@
     transform: rotate(360deg);
   }
 }
+
+@media screen and (max-width: 768px) {
+  .p-datatable.table-mobile-rows.p-datatable-responsive-stack .p-datatable-tbody > tr{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+  }
+  .p-datatable.table-mobile-rows.p-datatable-responsive-stack .p-datatable-tbody > tr > td {
+    flex-direction: column;
+    align-items: start;
+    align-self: center;
+    padding: 0.5rem;
+  }
+  .p-datatable.table-mobile-rows.p-datatable-responsive-stack .p-datatable-tbody > tr > td > .p-column-title {
+    text-decoration: underline;
+  }
+}

@@ -7,3 +7,10 @@ export interface IVideo {
   updatedAt: Date;
   deletedAt: Date;
 }
+
+export interface ICreateVideo {
+  name: string;
+  title: string;
+  urlVideo: string;
+  thumbNail: string;
+}

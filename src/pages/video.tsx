@@ -1,15 +1,13 @@
-import { useAppSelector } from "app/hooks";
+import TableVideos from "features/videos/table.videos";
 import React from "react";
 
 export const VideoPage: React.FC = (props: any) => {
-  const norr = useAppSelector( state => state.norr );
-  
-  console.log(norr)
+  // const norr = useAppSelector( state => state.norr );
 
   return (
-    <>
-      Список видео
-    </>
+    <div className="col-12">
+      <TableVideos />
+    </div>
   );
 }
 
