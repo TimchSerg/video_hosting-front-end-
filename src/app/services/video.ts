@@ -9,6 +9,10 @@ export const videosApi = api.injectEndpoints({
         { type: 'Videos' },
       ],
     }),
+    getVideoById: build.query<IVideo, string>({
+      query: (id: string) => ({ url: `/video/${id}` }),
+      providesTags: (result, error, id) => [{ type: 'Videos', id }],
+    }),
     createVideo: build.mutation<any, Partial<ICreateVideo>>({
       query: (credentials: any) => {
         return {
@@ -36,6 +40,7 @@ export const videosApi = api.injectEndpoints({
 
 export const { 
   useGetVideosQuery,
+  useGetVideoByIdQuery,
   useCreateVideoMutation,
   useUploadMutation,
 } = videosApi;

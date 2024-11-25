@@ -7,8 +7,6 @@ import { composeValidators, requiredValidator } from "components/form/validators
 import { TextAreaField, TextField } from "components/form/fields";
 import SingleUploadVideo from "components/upload/single.upload.video";
 import { useCreateVideoMutation, useGetVideosQuery, useUploadMutation } from "app/services/video";
-import { IUploadVideo } from "app/interfaces/video";
-
 
 interface IProps {
   visible: boolean;

@@ -5,7 +5,7 @@ interface IProps {
   onSelectFIle: (event: any) => void;
 }
 
-const SingleUploadVideo = React.forwardRef<any, IProps>((props: any) => {
+const SingleUploadVideo = React.forwardRef<any, IProps>((props: any, ref: any) => {
   const { onSelectFIle } = props
 
   const headerTemplate = (options:any) => {

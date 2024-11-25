@@ -24,7 +24,13 @@ export const ActionsColumn: React.FC<IProps> = (props: IProps) => {
   return (
     <>
       <Menu model={menuItems} popup ref={menu} id={`popup_${element.id}`} />
-      <Button className={styles['table-column--setting']} icon="pi pi-cog" onClick={handleClick} aria-controls={`popup_${element.id}`} aria-haspopup />
+      <Button 
+        className={styles['table-column--setting']} 
+        icon="pi pi-cog" 
+        onClick={handleClick} 
+        aria-controls={`popup_${element.id}`} 
+        aria-haspopup 
+      />
     </>
   );
 };

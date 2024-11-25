@@ -7,7 +7,15 @@ import styles from "../styles.module.css";
 type FieldPropsType = FieldRenderProps<string, any>;
 
 export const TextField = (props: FieldPropsType) => {
-  const { meta, icon, input, label, settings, onError = () => {} } = props;
+  const { 
+    meta, 
+    icon, 
+    input, 
+    label, 
+    settings,
+    onClickIcon = () => {},
+    onError = () => {} 
+  } = props;
 
   if(meta.error) onError(meta)
 
@@ -21,7 +29,7 @@ export const TextField = (props: FieldPropsType) => {
         <label>{label}</label>
         <div className={styles.inputWrapper}>
           <InputText {...input} {...settings} />
-          {icon && <i className={icon}></i>}
+          {icon && <i className={icon} onClick={onClickIcon}></i>}
         </div>
         {meta.error && meta.touched && (
           <small className={styles.error}>{meta.error}</small>
