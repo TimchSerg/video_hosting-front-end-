@@ -1,4 +1,4 @@
-import { ICreateVideo, IVideo } from 'app/interfaces/video';
+import { ICreateVideo, IUploadVideo, IVideo } from 'app/interfaces/video';
 import { api } from './api'
 
 export const videosApi = api.injectEndpoints({
@@ -18,7 +18,7 @@ export const videosApi = api.injectEndpoints({
         }
       }
     }),
-    upload: build.mutation<any, Partial<{file: File}>>({
+    upload: build.mutation<IUploadVideo, Partial<any>>({
       query: (credentials: any) => {
         const fd = new FormData();
         fd.append('video', credentials.file, credentials.file.name)

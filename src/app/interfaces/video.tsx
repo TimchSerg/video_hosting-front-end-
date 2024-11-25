@@ -14,3 +14,8 @@ export interface ICreateVideo {
   urlVideo: string;
   thumbNail: string;
 }
+
+export interface IUploadVideo {
+  urlVideo: string;
+  thumbNail: string;
+}

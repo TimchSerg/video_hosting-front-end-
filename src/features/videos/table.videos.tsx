@@ -46,7 +46,7 @@ export const TableVideos: React.FC = (props: any) => {
       >
         <Column header="Наименование" body={imageBody} ></Column>
         <Column header="Дата создания" field="createdAt" sortable sortField="createdAt"></Column>
-        <Column body={action} style={{ maxWidth: '5rem', float: "right" }}></Column>
+        <Column body={action} style={{ maxWidth: '5rem' }}></Column>
       </DataTable>
     </>
   );
