@@ -38,7 +38,7 @@ export const TableVideos: React.FC = () => {
   let menu = (item: any) => [
     {
       label: 'Детали видео', 
-      icon: 'pi pi-fw pi-trash', 
+      icon: 'pi pi-fw pi-cog', 
       command:()=> handleShow(item.id) 
     }
   ]
