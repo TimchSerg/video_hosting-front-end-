@@ -29,10 +29,12 @@ export const AddVideoWin: React.FC<IProps> = (props: IProps) => {
             name: values.name,
             title: values.title,
             urlVideo: response.data.urlVideo,
-            thumbNail: response.data.thumbNail
+            thumbNail: response.data.thumbNail,
+            pic: response.data.pic
           }) 
         }
       )
+      .catch( err => console.log(err) )
       .finally( () => {
         setLoading(false)
         refetch()
