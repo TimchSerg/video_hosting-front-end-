@@ -77,6 +77,15 @@ export const DetailsVideoWin: React.FC<IProps> = (props: IProps) => {
                   />
                 </div>
 
+                <div className="col-12 p-1">
+                  <Field
+                    validate={composeValidators(requiredValidator)}
+                    name="pic" label="Ссылка на изображение:" render={TextField}
+                    icon="pi pi-clone"
+                    onClickIcon={() => copyText(values.thumbNail)}
+                  />
+                </div>
+
               </div>
             </div>
               
