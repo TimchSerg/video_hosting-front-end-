@@ -28,6 +28,7 @@ export const AddVideoWin: React.FC<IProps> = (props: IProps) => {
           return createVideo({
             name: values.name,
             title: values.title,
+            filename: response.data.filename,
             urlVideo: response.data.urlVideo,
             thumbNail: response.data.thumbNail,
             pic: response.data.pic

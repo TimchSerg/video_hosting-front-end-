@@ -62,6 +62,15 @@ export const DetailsVideoWin: React.FC<IProps> = (props: IProps) => {
                 <div className="col-12 p-1">
                   <Field
                     validate={composeValidators(requiredValidator)}
+                    name="filename" label="Имя файла:" render={TextField}
+                    icon="pi pi-clone"
+                    onClickIcon={() => copyText(values.filename)}
+                  />
+                </div>
+
+                <div className="col-12 p-1">
+                  <Field
+                    validate={composeValidators(requiredValidator)}
                     name="urlVideo" label="Ссылка на видео:" render={TextField}
                     icon="pi pi-clone"
                     onClickIcon={() => copyText(values.urlVideo)}
@@ -82,7 +91,7 @@ export const DetailsVideoWin: React.FC<IProps> = (props: IProps) => {
                     validate={composeValidators(requiredValidator)}
                     name="pic" label="Ссылка на изображение:" render={TextField}
                     icon="pi pi-clone"
-                    onClickIcon={() => copyText(values.thumbNail)}
+                    onClickIcon={() => copyText(values.pic)}
                   />
                 </div>
 

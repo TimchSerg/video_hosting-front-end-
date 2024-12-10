@@ -13,6 +13,10 @@ export const videosApi = api.injectEndpoints({
       query: (id: string) => ({ url: `/video/${id}` }),
       providesTags: (result, error, id) => [{ type: 'Videos', id }],
     }),
+    getVideoByName: build.query<IVideo, string>({
+      query: (name: string) => ({ url: `/video/name/${name}` }),
+      providesTags: (result, error, id) => [{ type: 'Videos', id }],
+    }),
     createVideo: build.mutation<any, Partial<ICreateVideo>>({
       query: (credentials: any) => {
         return {
@@ -41,6 +45,7 @@ export const videosApi = api.injectEndpoints({
 export const { 
   useGetVideosQuery,
   useGetVideoByIdQuery,
+  useGetVideoByNameQuery,
   useCreateVideoMutation,
   useUploadMutation,
 } = videosApi;
