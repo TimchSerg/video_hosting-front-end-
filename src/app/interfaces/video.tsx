@@ -1,6 +1,7 @@
 export interface IVideo {
   id: string;
   name: string;
+  filename: string;
   urlVideo: string;
   thumbNail: string;
   createdAt: Date;

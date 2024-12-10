@@ -1,7 +1,7 @@
 import { useGetVideoByIdQuery } from "app/services/video";
 import React, { useEffect } from "react";
 import { useParams } from "react-router-dom";
-// import { Player, BigPlayButton } from 'video-react';
+import axios from "axios";
 
 function addListenerMulti(el: any, s: any, fn: Function) {
   s.split(' ').forEach( (e:any) => el.addEventListener(e, fn, false));
@@ -10,9 +10,26 @@ function addListenerMulti(el: any, s: any, fn: Function) {
 export const VideoIdPage: React.FC = () => {
   const { id } = useParams()
   const { data } = useGetVideoByIdQuery(id ? id : '');
-  let vid = document.getElementById("myVideo") as HTMLVideoElement;
+  
+
+  const handleVideoUpload = (filename: string, vid: HTMLVideoElement) => {
+    axios(
+      {
+        url: `/api/video/file/video/${filename}`,
+        method: 'GET',
+        responseType: 'blob',
+      }
+    )
+      .then(res => {
+        if(vid) {
+          vid.src = URL.createObjectURL(res.data);
+        }
+    });
+
+  };
 
   useEffect(() => {
+    let vid = document.getElementById("myVideo") as HTMLVideoElement;
     if( vid ) addListenerMulti(
       vid, 
       'abort canplay canplaythrough durationchange emptied encrypted ended error interruptbegin interruptend loadeddata loadedmetadata loadstart mozaudioavailable pause play playing progress ratechange seeked seeking stalled suspend timeupdate volumechange waiting', 
@@ -25,13 +42,21 @@ export const VideoIdPage: React.FC = () => {
         };
       }
     );
-  }, [vid])
+  }, [])
+
+  useEffect(() => {
+    let vid = document.getElementById("myVideo") as HTMLVideoElement;
+    console.log(vid, data)
+    if( vid && data ) {
+      handleVideoUpload(data.filename, vid)
+    }
+  }, [data])
 
   return (
     <div className="col-12" style={{height: 'calc(100vh - 50px)'}}>
       <video
         id="myVideo"
-        src={data && data.urlVideo ? data.urlVideo : ''}
+        src={""}
         width='100%'
         height='100%'
         controls
