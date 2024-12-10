@@ -7,6 +7,7 @@ import { useGetVideosQuery } from "app/services/video";
 import ActionsColumn from "components/table/action.column";
 import { PreviewVideo } from "./preview.video";
 import DetailsVideoWin from "./details.video.win";
+import { useNavigate } from "react-router-dom";
 
 const imageBody = (rowData: any) => {
 
@@ -26,6 +27,7 @@ export const TableVideos: React.FC = () => {
   const { data, isLoading } = useGetVideosQuery()
   const [ visible, setVisible ] = useState(false)
   const [ currentId, setCurrentId ] = useState<string | null>(null) 
+  const navigate = useNavigate()
   const isMobile = useMediaQuery({
     query: '(max-width: 768px)'
   })
@@ -36,6 +38,11 @@ export const TableVideos: React.FC = () => {
   }
 
   let menu = (item: any) => [
+    {
+      label: 'Воспроизведение видео', 
+      icon: 'pi pi-fw pi-play', 
+      command:()=> navigate('/embed/id/' + item.id)
+    }, 
     {
       label: 'Детали видео', 
       icon: 'pi pi-fw pi-cog', 

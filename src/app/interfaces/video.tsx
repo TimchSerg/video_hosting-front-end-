@@ -11,6 +11,7 @@ export interface IVideo {
 export interface ICreateVideo {
   name: string;
   title: string;
+  filename: string;
   urlVideo: string;
   thumbNail: string;
   pic: string;
