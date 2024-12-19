@@ -8,6 +8,13 @@ function addListenerMulti(el: any, s: any, fn: Function) {
   s.split(' ').forEach( (e:any) => el.addEventListener(e, fn, false));
 }
 
+function detectIphone(){
+  const useragent = navigator.userAgent.toLowerCase();
+  if (useragent.search("iphone") > -1)
+    return true;
+  else  return false;
+}
+
 export const VideoNamePage: React.FC = () => {
   const { filename } = useParams()
   const { data } = useGetVideoByNameQuery(filename ? filename : '');
@@ -21,8 +28,9 @@ export const VideoNamePage: React.FC = () => {
       }
     )
       .then(res => {
+        const blob = res.data.slice(0, res.data.size, "video/*")
         if(vid) {
-          vid.src = URL.createObjectURL(res.data);
+          vid.src = URL.createObjectURL(blob);
         }
     });
 
@@ -46,9 +54,9 @@ export const VideoNamePage: React.FC = () => {
 
   useEffect(() => {
     let vid = document.getElementById("myVideo") as HTMLVideoElement;
-    console.log(vid, data)
     if( vid && data ) {
-      handleVideoUpload(data.filename, vid)
+      if(detectIphone()) return;
+      else handleVideoUpload(data.filename, vid)
     }
   }, [data])
 
@@ -56,11 +64,12 @@ export const VideoNamePage: React.FC = () => {
     <div className="col-12" style={{height: 'calc(100vh - 50px)'}}>
       <video
         id="myVideo"
-        src={''}
+        autoPlay 
+        playsInline
+        controls
+        src={data ? data.urlVideo : ''}
         width='100%'
         height='100%'
-        controls
-        autoPlay
       />
     </div>
   );

@@ -7,11 +7,17 @@ function addListenerMulti(el: any, s: any, fn: Function) {
   s.split(' ').forEach( (e:any) => el.addEventListener(e, fn, false));
 }
 
+function detectIphone(){
+  const useragent = navigator.userAgent.toLowerCase();
+  if (useragent.search("iphone") > -1)
+    return true;
+  else  return false;
+}
+
 export const VideoIdPage: React.FC = () => {
   const { id } = useParams()
   const { data } = useGetVideoByIdQuery(id ? id : '');
   
-
   const handleVideoUpload = (filename: string, vid: HTMLVideoElement) => {
     axios(
       {
@@ -21,8 +27,10 @@ export const VideoIdPage: React.FC = () => {
       }
     )
       .then(res => {
+        const blob = res.data.slice(0, res.data.size, "video/*")
+        console.log(blob)
         if(vid) {
-          vid.src = URL.createObjectURL(res.data);
+          vid.src = URL.createObjectURL(blob);
         }
     });
 
@@ -46,9 +54,9 @@ export const VideoIdPage: React.FC = () => {
 
   useEffect(() => {
     let vid = document.getElementById("myVideo") as HTMLVideoElement;
-    console.log(vid, data)
     if( vid && data ) {
-      handleVideoUpload(data.filename, vid)
+      if(detectIphone()) vid.src = data.urlVideo
+      else handleVideoUpload(data.filename, vid)
     }
   }, [data])
 
@@ -56,7 +64,7 @@ export const VideoIdPage: React.FC = () => {
     <div className="col-12" style={{height: 'calc(100vh - 50px)'}}>
       <video
         id="myVideo"
-        src={""}
+        src={''}
         width='100%'
         height='100%'
         controls
