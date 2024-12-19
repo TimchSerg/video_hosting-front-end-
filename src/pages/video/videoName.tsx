@@ -55,7 +55,10 @@ export const VideoNamePage: React.FC = () => {
   useEffect(() => {
     let vid = document.getElementById("myVideo") as HTMLVideoElement;
     if( vid && data ) {
-      if(detectIphone()) return;
+      if(detectIphone()) {
+        vid.play()
+        return;
+      }
       else handleVideoUpload(data.filename, vid)
     }
   }, [data])
@@ -67,6 +70,7 @@ export const VideoNamePage: React.FC = () => {
         autoPlay 
         playsInline
         controls
+        muted
         src={data ? data.urlVideo : ''}
         width='100%'
         height='100%'
